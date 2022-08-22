@@ -61,7 +61,7 @@ export default function App() {
           }}
         >
           <Stack.Screen name="AllExpensesScreen" component={TabNavigator} />
-          <Stack.Screen name="ManageExpense" component={ManageExpense} />
+          <Stack.Screen name="ManageExpense" component={ManageExpense} options={{presentation: 'modal'}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </>
