@@ -3,7 +3,7 @@ import ExpensesListTile from "./ExpensesListTile";
 
 const ExpensesList = ({expenses}) => {
   const renderExpenseItem = (itemData) => {
-    return <ExpensesListTile />
+    return <ExpensesListTile expense={itemData.item}/>
   }
 
   return (
