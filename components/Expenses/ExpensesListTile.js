@@ -1,12 +1,13 @@
 import { View, Text, StyleSheet } from "react-native";
 import Colors from "../../constants/colors";
+import getFormattedDate from "../../utils/date";
 
 const ExpensesListTile = ({expense}) => {
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.titleText}>{expense.title}</Text>
-        <Text style={styles.dateText}>{expense.date.toLocaleString('nl-NL')}</Text>
+        <Text style={styles.dateText}>{getFormattedDate(expense.date)}</Text>
       </View>
       <View style={styles.amountContainer}>
         <Text style={styles.amountText}>€{expense.amount.toFixed(2)}</Text>
@@ -31,13 +32,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   dateText: {
-    color: Colors.primary50
+    color: Colors.primary50,
   },
   amountContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.primary50,
-    borderRadius: 6
+    borderRadius: 6,
+    padding: 6
   },
   amountText: {
     color: Colors.primary500,
