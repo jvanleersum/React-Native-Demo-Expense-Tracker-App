@@ -32,6 +32,36 @@ const DUMMY_EXPENSES = [
     amount: 7.99,
     date: new Date("2022-08-20"),
   },
+  {
+    id: "e6",
+    title: "New pair of shoes",
+    amount: 28.89,
+    date: new Date("2022-01-29"),
+  },
+  {
+    id: "e7",
+    title: "10 books",
+    amount: 50.92,
+    date: new Date("2022-03-29"),
+  },
+  {
+    id: "e8",
+    title: "Great new laptop",
+    amount: 291.99,
+    date: new Date("2022-06-29"),
+  },
+  {
+    id: "e9",
+    title: "Glass of water",
+    amount: 1.59,
+    date: new Date("2022-08-11"),
+  },
+  {
+    id: "e10",
+    title: "A few beers",
+    amount: 7.99,
+    date: new Date("2022-08-20"),
+  },
 ];
 
 const AllExpenses = () => {
