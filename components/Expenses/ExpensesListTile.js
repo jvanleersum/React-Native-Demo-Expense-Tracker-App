@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 8,
     borderRadius: 8,
-    marginVertical: 8,
+    marginVertical: 6,
   },
   titleText: {
     color: Colors.primary50,
@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: Colors.primary50,
     borderRadius: 6,
-    padding: 6
+    padding: 6,
+    minWidth: 80
   },
   amountText: {
     color: Colors.primary500,

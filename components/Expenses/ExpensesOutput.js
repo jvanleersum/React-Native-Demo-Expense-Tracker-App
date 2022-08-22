@@ -17,5 +17,7 @@ export default ExpensesOutput;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 16
+    marginHorizontal: 16,
+    marginTop: 16,
+    marginBottom: 0
   }})
