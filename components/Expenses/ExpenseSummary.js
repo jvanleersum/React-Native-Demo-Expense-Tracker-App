@@ -3,7 +3,6 @@ import Colors from "../../constants/colors";
 
 const ExpenseSummary = ({expenses, expensePeriod}) => {
   const expenseTotal = expenses.reduce((sum, expense) => sum + expense.amount, 0)
-  console.log(expenses)
   return (
     <View style={styles.container}>
       <Text style={styles.periodText}>{expensePeriod}</Text>
