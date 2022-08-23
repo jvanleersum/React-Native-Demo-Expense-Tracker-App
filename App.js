@@ -9,21 +9,21 @@ import AllExpenses from "./screens/AllExpenses";
 import RecentExpenses from "./screens/RecentExpenses";
 import IconButton from "./components/UI/IconButton";
 import ManageExpense from "./screens/ManageExpense";
+import { ExpensesContextProvider } from "./store/expenses-context";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-
 const TabNavigator = ({}) => {
   return (
     <Tab.Navigator
-      screenOptions={({navigation}) => ({
+      screenOptions={({ navigation }) => ({
         tabBarActiveTintColor: Colors.accent500,
         tabBarInactiveTintColor: Colors.primary50,
         tabBarStyle: { backgroundColor: Colors.primary500 },
         headerTintColor: Colors.primary50,
         headerStyle: { backgroundColor: Colors.primary500 },
-        headerRight: ({tintColor}) => (
+        headerRight: ({ tintColor }) => (
           <IconButton
             icon="add"
             size={24}
@@ -61,24 +61,26 @@ export default function App() {
   return (
     <>
       <StatusBar />
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="AllExpensesScreen"
-            component={TabNavigator}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="ManageExpense"
-            component={ManageExpense}
-            options={{
-              presentation: "modal",
-              headerTintColor: Colors.primary50,
-              headerStyle: { backgroundColor: Colors.primary500 },
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <ExpensesContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="AllExpensesScreen"
+              component={TabNavigator}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ManageExpense"
+              component={ManageExpense}
+              options={{
+                presentation: "modal",
+                headerTintColor: Colors.primary50,
+                headerStyle: { backgroundColor: Colors.primary500 },
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ExpensesContextProvider>
     </>
   );
 }

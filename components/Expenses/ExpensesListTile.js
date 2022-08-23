@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Colors from "../../constants/colors";
-import getFormattedDate from "../../utils/date";
+import { getFormattedDate } from "../../utils/date";
 
 const ExpensesListTile = ({ expense }) => {
   const navigation = useNavigation();
