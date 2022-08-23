@@ -26,6 +26,11 @@ const ManageExpense = ({ route, navigation }) => {
   }
 
   const confirmHandler = () => {
+    if (isEditing) {
+      expCtx.editExpense(expenseId, {title: "Changed Title", amount: 12.99, date: new Date()});
+    } else {
+      expCtx.addExpense({title: "Dummy", amount: 23.12, date: new Date()})
+    }
     navigation.goBack();
   }
 

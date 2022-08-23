@@ -77,7 +77,7 @@ export const ExpensesContextProvider = ({children}) => {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
   
   const addExpenseHandler = ({title, amount, date}) => {
-    const id = new Date().toString() + Math.random().toString();
+    const id = new Date().toISOString() + Math.random().toString();
     const newExpense = {id, title, amount, date}
 
     setExpenses(prevExp => [newExpense, ...prevExp])
@@ -87,13 +87,15 @@ export const ExpensesContextProvider = ({children}) => {
     setExpenses(prevExp => prevExp.filter(exp => exp.id !== id))
   }
 
-  const editExpenseHandler = (id, {title, amount, date}) => {
-    const expenseIndex = expenses.indexOf(exp => exp.id === id)
+  const editExpenseHandler = (id, expenseData) => {
+    const expenseIndex = expenses.findIndex(exp => exp.id === id)
+    const updatableExpense = expenses[expenseIndex]
     setExpenses(prevExp => {
-      prevExp[expenseIndex].title = title
-      prevExp[expenseIndex].amount = amount
-      prevExp[expenseIndex].date = date
-      return prevExp })
+      const updatedExpense = {...updatableExpense, ...expenseData}
+      const newExpenses = [...prevExp]
+      newExpenses[expenseIndex] = updatedExpense
+      return newExpenses
+    })
   }
 
   return <ExpensesContext.Provider value={{
