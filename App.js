@@ -7,23 +7,31 @@ import { Ionicons } from "@expo/vector-icons";
 import Colors from "./constants/colors";
 import AllExpenses from "./screens/AllExpenses";
 import RecentExpenses from "./screens/RecentExpenses";
-import AddExpenseButton from "./components/AddExpenseButton";
+import IconButton from "./components/UI/IconButton";
 import ManageExpense from "./screens/ManageExpense";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const TabNavigator = () => {
+
+const TabNavigator = ({}) => {
   return (
     <Tab.Navigator
-      screenOptions={{
+      screenOptions={({navigation}) => ({
         tabBarActiveTintColor: Colors.accent500,
         tabBarInactiveTintColor: Colors.primary50,
         tabBarStyle: { backgroundColor: Colors.primary500 },
         headerTintColor: Colors.primary50,
         headerStyle: { backgroundColor: Colors.primary500 },
-        headerRight: () => <AddExpenseButton />,
-      }}
+        headerRight: ({tintColor}) => (
+          <IconButton
+            icon="add"
+            size={24}
+            color={tintColor}
+            onPress={() => navigation.navigate("ManageExpense")}
+          />
+        ),
+      })}
     >
       <Tab.Screen
         name="RecentExpenses"
@@ -54,18 +62,20 @@ export default function App() {
     <>
       <StatusBar />
       <NavigationContainer>
-        <Stack.Navigator
-          >
+        <Stack.Navigator>
           <Stack.Screen
             name="AllExpensesScreen"
             component={TabNavigator}
-            options={{ headerShown: false,}}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name="ManageExpense"
             component={ManageExpense}
-            options={{ presentation: "modal", headerTintColor: Colors.primary50,
-            headerStyle: { backgroundColor: Colors.primary500 }, }}
+            options={{
+              presentation: "modal",
+              headerTintColor: Colors.primary50,
+              headerStyle: { backgroundColor: Colors.primary500 },
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
