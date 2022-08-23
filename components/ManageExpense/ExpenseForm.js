@@ -13,15 +13,13 @@ const ExpenseForm = () => {
       <Input
         label="Title"
         textInputConfig={{
-          placeholder: "New Title",
-          keyboardType: "default",
+          multiline: true,
           onChangeText: changeTitleHandler,
         }}
       />
       <Input
         label="Amount"
         textInputConfig={{
-          placeholder: "New Amount",
           keyboardType: "decimal-pad",
           onChangeText: changeAmountHandler,
         }}
@@ -29,8 +27,8 @@ const ExpenseForm = () => {
       <Input
         label="Date"
         textInputConfig={{
-          placeholder: "New Date",
-          keyboardType: "default",
+          placeholder: "YYYY-MM-DD",
+          maxLength: 10,
           onChangeText: changeDateHandler,
         }}
       />
