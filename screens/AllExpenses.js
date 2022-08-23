@@ -8,7 +8,7 @@ const AllExpenses = () => {
 
   return (
     <View style={styles.container}>
-      <ExpensesOutput items={expenses} expensePeriod="All"/>
+      <ExpensesOutput items={expenses} expensePeriod="All" fallbackText="There are no expenses yet"/>
     </View>
   );
 };
