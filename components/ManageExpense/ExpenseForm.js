@@ -4,6 +4,7 @@ import { useState } from "react";
 import Input from "./Input";
 import Button from "../../components/UI/Button";
 import { getFormattedDate } from "../../utils/date";
+import Colors from "../../constants/colors";
 
 const ExpenseForm = ({
   onCancel,
@@ -42,7 +43,7 @@ const ExpenseForm = ({
       date: new Date(inputs.date.value),
     };
     const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
-    const dateIsValid = expenseData.date.toString !== "Invalid Date";
+    const dateIsValid = expenseData.date.toString() !== "Invalid Date";
     const titleIsValid = expenseData.title.trim().length !== 0;
 
     if (!amountIsValid || !dateIsValid || !titleIsValid) {
@@ -66,6 +67,7 @@ const ExpenseForm = ({
         <Input
           label="Amount"
           style={styles.inputFlex}
+          invalid={!inputs.amount.isValid}
           textInputConfig={{
             keyboardType: "decimal-pad",
             onChangeText: inputChangeHandler.bind(null, "amount"),
@@ -75,6 +77,7 @@ const ExpenseForm = ({
         <Input
           label="Date"
           style={styles.inputFlex}
+          invalid= {!inputs.date.isValid}
           textInputConfig={{
             placeholder: "YYYY-MM-DD",
             maxLength: 10,
@@ -85,13 +88,14 @@ const ExpenseForm = ({
       </View>
       <Input
         label="Description"
+        invalid={!inputs.title.isValid}
         textInputConfig={{
           multiline: true,
           onChangeText: inputChangeHandler.bind(null, "title"),
           value: inputs.title.value,
         }}
       />
-      {!formIsValid && <Text>One of more fields is invalid</Text>}
+      {!formIsValid && <Text style={styles.errorText}>One of more fields is invalid</Text>}
       <View style={styles.buttonsContainer}>
         <Button mode="flat" style={styles.button} onPress={onCancel}>
           Cancel
@@ -114,6 +118,11 @@ const styles = StyleSheet.create({
   },
   inputFlex: {
     flex: 1,
+  },
+  errorText: {
+    textAlign: 'center', 
+    margin: 8,
+    color: Colors.error500
   },
   buttonsContainer: {
     flexDirection: "row",
