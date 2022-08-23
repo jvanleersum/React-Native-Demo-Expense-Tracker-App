@@ -7,7 +7,7 @@ const ExpensesListTile = ({ expense }) => {
   const navigation = useNavigation();
 
   const manageExpenseHandler = () => {
-    navigation.navigate("ManageExpense", { id: expense.id });
+    navigation.navigate("ManageExpense", { expenseId: expense.id });
   };
 
   return (

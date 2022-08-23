@@ -17,10 +17,12 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
         tabBarActiveTintColor: Colors.accent500,
         tabBarInactiveTintColor: Colors.primary50,
-        tabBarStyle: { backgroundColor: Colors.primary500 }
+        tabBarStyle: { backgroundColor: Colors.primary500 },
+        headerTintColor: Colors.primary50,
+        headerStyle: { backgroundColor: Colors.primary500 },
+        headerRight: () => <AddExpenseButton />,
       }}
     >
       <Tab.Screen
@@ -53,15 +55,18 @@ export default function App() {
       <StatusBar />
       <NavigationContainer>
         <Stack.Navigator
-          screenOptions={{
-            headerTintColor: Colors.primary50,
-            headerStyle: { backgroundColor: Colors.primary500 },
-            contentStyle: { backgroundColor: Colors.primary700},
-            headerRight: () => <AddExpenseButton />,
-          }}
-        >
-          <Stack.Screen name="AllExpensesScreen" component={TabNavigator} />
-          <Stack.Screen name="ManageExpense" component={ManageExpense} options={{presentation: 'modal'}}/>
+          >
+          <Stack.Screen
+            name="AllExpensesScreen"
+            component={TabNavigator}
+            options={{ headerShown: false,}}
+          />
+          <Stack.Screen
+            name="ManageExpense"
+            component={ManageExpense}
+            options={{ presentation: "modal", headerTintColor: Colors.primary50,
+            headerStyle: { backgroundColor: Colors.primary500 }, }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
