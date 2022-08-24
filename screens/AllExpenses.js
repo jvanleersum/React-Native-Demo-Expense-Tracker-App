@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import ExpensesOutput from "../components/Expenses/ExpensesOutput";
 import ExpensesContext from "../store/expenses-context";
@@ -7,7 +7,6 @@ import { fetchExpenses } from "../utils/http";
 const AllExpenses = () => {
   const expCtx = useContext(ExpensesContext);
   const expenses = expCtx.expenses;
-  // const [fetchedExpenses, setFetchedExpenses] = useState([]);
 
   useEffect(() => {
     const getExpenses = async () => {

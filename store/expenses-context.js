@@ -13,10 +13,7 @@ export default ExpensesContext;
 export const ExpensesContextProvider = ({children}) => {
   const [expenses, setExpenses] = useState([]);
   
-  const addExpenseHandler = ({title, amount, date}) => {
-    const id = new Date().toISOString() + Math.random().toString();
-    const newExpense = {id, title, amount, date}
-
+  const addExpenseHandler = (newExpense) => {
     setExpenses(prevExp => [newExpense, ...prevExp])
   };
 
