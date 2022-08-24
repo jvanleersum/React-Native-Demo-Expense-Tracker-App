@@ -28,7 +28,6 @@ const ManageExpense = ({ route, navigation }) => {
     expCtx.removeExpense(expenseId);
     setIsLoading(true);
     await deleteExpense(expenseId);
-    setIsLoading(false);
     navigation.goBack();
   };
 
@@ -37,15 +36,12 @@ const ManageExpense = ({ route, navigation }) => {
   };
 
   const confirmHandler = async (expenseData) => {
+    setIsLoading(true);
     if (isEditing) {
       expCtx.editExpense(expenseId, expenseData);
-      setIsLoading(true);
       await updateExpense(expenseId, expenseData);
-      setIsLoading(false);
     } else {
-      setIsLoading(true);
       const id = await storeExpense(expenseData);
-      setIsLoading(false);
       expCtx.addExpense({ ...expenseData, id: id });
     }
     navigation.goBack();
