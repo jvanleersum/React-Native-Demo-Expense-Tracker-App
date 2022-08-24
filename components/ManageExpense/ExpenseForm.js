@@ -39,7 +39,7 @@ const ExpenseForm = ({
   const submitHandler = () => {
     const expenseData = {
       title: inputs.title.value,
-      amount: parseInt(inputs.amount.value),
+      amount: +inputs.amount.value,
       date: new Date(inputs.date.value),
     };
     const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
