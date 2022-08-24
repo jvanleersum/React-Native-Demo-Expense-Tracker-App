@@ -1,18 +1,21 @@
 import { View,StyleSheet } from "react-native";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import ExpensesContext from "../store/expenses-context";
 import ExpensesOutput from "../components/Expenses/ExpensesOutput";
 import { getDateMinusDays } from "../utils/date";
 import { fetchExpenses } from "../utils/http";
+import LoadingOverlay from "../components/UI/LoadingOverlay";
 
 
 const RecentExpenses = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const expCtx = useContext(ExpensesContext)
 
   useEffect(() => {
     const getExpenses = async () => {
       const expenses = await fetchExpenses();
+      setIsLoading(false);
       expCtx.setExpenses(expenses);
     }
     getExpenses()
@@ -24,6 +27,10 @@ const RecentExpenses = () => {
     const sevenDaysAgo = getDateMinusDays(today, 7);
     return expense.date > sevenDaysAgo
   })
+
+  if (isLoading) {
+    return <LoadingOverlay />
+  }
 
   return (
     <View style={styles.container}>
@@ -37,5 +44,5 @@ export default RecentExpenses;
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  }
+  },
 });
