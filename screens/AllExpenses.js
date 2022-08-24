@@ -4,20 +4,34 @@ import ExpensesOutput from "../components/Expenses/ExpensesOutput";
 import ExpensesContext from "../store/expenses-context";
 import { fetchExpenses } from "../utils/http";
 import LoadingOverlay from "../components/UI/LoadingOverlay";
+import ErrorOverlay from "../components/UI/ErrorOverlay";
 
 const AllExpenses = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const expCtx = useContext(ExpensesContext);
   const expenses = expCtx.expenses;
 
   useEffect(() => {
     const getExpenses = async () => {
-      const expenses = await fetchExpenses();
+      try {
+        const expenses = await fetchExpenses();
+        expCtx.setExpenses(expenses);
+      } catch (error) {
+        setError('Could not fetch expenses!');
+      }
       setIsLoading(false);
-      expCtx.setExpenses(expenses);
     }
     getExpenses()
   }, [])
+
+  const errorHandler = () => {
+    setError(null);
+  }
+
+  if (error && !isLoading) {
+    return <ErrorOverlay message={error} onConfirm={errorHandler}/>
+  }
 
   if (isLoading) {
     return <LoadingOverlay />
